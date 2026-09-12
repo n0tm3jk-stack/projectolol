@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Inicio | World Map Game
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            🌍 World Map Game
+        </h1>
+
+        <p>
+            Aprende geografía identificando países
+            directamente sobre el mapa mundial.
+        </p>
+
+        {% if current_user.is_authenticated %}
+
+            <a
+                class="button"
+                href="{{ url_for('game.game') }}"
+            >
+                Start Game
+            </a>
+
+        {% else %}
+
+            <a
+                class="button"
+                href="{{ url_for('auth.register') }}"
+            >
+                Crear cuenta
+            </a>
+
+            <a
+                class="button secondary"
+                href="{{ url_for('auth.login') }}"
+            >
+                Iniciar sesión
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

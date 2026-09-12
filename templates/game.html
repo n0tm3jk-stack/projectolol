@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Juego
+{% endblock %}
+
+
+{% block head %}
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="game-container">
+
+    <aside class="game-panel">
+
+        <h2>Encuentra</h2>
+
+        <div id="targetCountry">
+            Cargando...
+        </div>
+
+        <div class="score">
+
+            Score:
+
+            <span id="score">
+                0
+            </span>
+
+        </div>
+
+        <div id="message"></div>
+
+    </aside>
+
+    <div id="map"></div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/game.js') }}">
+</script>
+
+{% endblock %}

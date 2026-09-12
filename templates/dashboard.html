@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Estadísticas
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard">
+
+    <h1>
+        Estadísticas
+    </h1>
+
+    {% if stats %}
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Partidas</h3>
+                <p>{{ stats.games_played }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Correctas</h3>
+                <p>{{ stats.correct_answers }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Incorrectas</h3>
+                <p>{{ stats.wrong_answers }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Puntuación total</h3>
+                <p>{{ stats.total_score }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Mejor partida</h3>
+                <p>{{ stats.best_score }}</p>
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Precisión</h3>
+
+                <p>
+                    {{ stats.accuracy }}%
+                </p>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <p>
+            Inicia sesión para visualizar tus estadísticas.
+        </p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

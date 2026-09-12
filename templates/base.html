@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        World Map Game
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a
+        href="{{ url_for('main.index') }}"
+        class="brand"
+    >
+        🌍 World Map Game
+    </a>
+
+    <nav>
+
+        {% if current_user.is_authenticated %}
+
+            <span>
+                {{ current_user.username }}
+            </span>
+
+            <a href="{{ url_for('game.game') }}">
+                Jugar
+            </a>
+
+            <a href="{{ url_for('main.dashboard') }}">
+                Estadísticas
+            </a>
+
+            <a href="{{ url_for('auth.logout') }}">
+                Salir
+            </a>
+
+        {% else %}
+
+            <a href="{{ url_for('auth.login') }}">
+                Login
+            </a>
+
+            <a href="{{ url_for('auth.register') }}">
+                Registrarse
+            </a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <div class="flash-container">
+
+            {% for category, message in messages %}
+
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+
+</html>
